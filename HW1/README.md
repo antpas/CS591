@@ -3,7 +3,7 @@ Homework 1 aims to build a simple Node.js server. Express is used to route paths
 
 ## Screenshots
 ![alt text](https://github.com/antpas/CS591/blob/master/HW1/screenshots/hw1_1.PNG)
-![alt text](https://github.com/antpas/CS591/blob/master/HW1/screenshots/hw1_2.PNG)
+![alt text](https://github.com/antpas/CS591/blob/master/HW1/screenshots/hw1_3.PNG)
 
 ## Code style
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
