@@ -42,7 +42,7 @@ router.get('/:inputParam', function (req, res) {
 
 //Return all strings currently stored in DB
 router.get('/', function (req, res) {
-    Stringinput.find({}, function (err, doc) {
+    Stringinput.find({},{ _id: 0, __v: 0 },  function (err, doc) {
         if (err) console.log("Error on find function")
         console.log("Successfully read from DB")
         res.send(doc)
