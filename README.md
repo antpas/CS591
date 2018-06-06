@@ -3,9 +3,15 @@ Homework 2 aims to understand and implement MongoDB and Mongoose.
 
 ## Screenshots
 ![alt text](https://github.com/antpas/CS591/tree/hw2/screenshots/hw2_1.PNG)
+
 ![alt text](https://github.com/antpas/CS591/tree/hw2/screenshots/hw2_2.PNG)
+
+![alt text](https://github.com/antpas/CS591/tree/hw2/screenshots/hw2_6.PNG)
+
 ![alt text](https://github.com/antpas/CS591/tree/hw2/screenshots/hw2_3.PNG)
+
 ![alt text](https://github.com/antpas/CS591/tree/hw2/screenshots/hw2_4.PNG)
+
 ![alt text](https://github.com/antpas/CS591/tree/hw2/screenshots/hw2_5.PNG)
 
 ## Code style
