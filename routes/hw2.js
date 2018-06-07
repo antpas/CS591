@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
-var Stringinput = require('../models/list');
+let Stringinput = require('../models/list');
 
 //Check DB for string, if not present add it to DB
-router.get('/:inputParam', function (req, res) {
+router.get('/:inputParam', function (req, res, next) {
     
     inputVar = req.params.inputParam
 
@@ -15,50 +15,50 @@ router.get('/:inputParam', function (req, res) {
         if(count == 0){
             inputLength = inputVar.length
 
-            var data = {
+            let data = {
                 string: inputVar,
                 length: inputLength
             };
 
             Stringinput.findOneAndUpdate(data, data, {upsert:true}, function(err, doc){
-                if (err) return res.send(500, { error: err });
+                if (err) return res.json(500, { error: err });
                 console.log("Succesfully saved");
-                res.send(data)
+                res.json(data)
             });
         }
         else if(count > 0){
             Stringinput.find({string: inputVar}, function (err, doc) {
                 if (err) console.log("Error on find function")
-                var outputFromDB = {
+                let outputFromDB = {
                     string: doc[0].string,
                     length: doc[0].length
                 };
                 console.log("Successfully read from DB")
-                res.send(outputFromDB)
+                res.json(outputFromDB)
               });
         }
       });
 })
 
 //Return all strings currently stored in DB
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
     Stringinput.find({},{ _id: 0, __v: 0 },  function (err, doc) {
         if (err) console.log("Error on find function")
         console.log("Successfully read from DB")
-        res.send(doc)
+        res.json(doc)
       });
 })
 
-router.post('/', function (req, res) {
+router.post('/', function (req, res, next) {
    
-    inputVar = req.body.inputParam
+    let inputVar = req.body.inputParam
 
     function isEmptyObject(obj) {
         return !Object.keys(obj).length;
     }
 
-    if(isEmptyObject(inputVar) || err){
-        var errorText = {
+    if(isEmptyObject(inputVar) ){
+        let errorText = {
             Error: "No string provided"
         };
         res.send(errorText)
@@ -72,7 +72,7 @@ router.post('/', function (req, res) {
             if(count == 0){
                 inputLength = inputVar.length
 
-                var data = {
+                let data = {
                     string: inputVar,
                     length: inputLength
                 };
@@ -86,7 +86,7 @@ router.post('/', function (req, res) {
             else if(count > 0){
                 Stringinput.find({string: inputVar}, function (err, doc) {
                     if (err) console.log("Error on find function")
-                    var outputFromDB = {
+                    let outputFromDB = {
                         string: doc[0].string,
                         length: doc[0].length
                     };
@@ -98,7 +98,7 @@ router.post('/', function (req, res) {
     }
 })
 
-router.delete('/', function (req, res) {
+router.delete('/', function (req, res, next) {
     inputVar = req.body.inputParam
 
     Stringinput.count({string: inputVar}, function (err, count) {
@@ -108,19 +108,19 @@ router.delete('/', function (req, res) {
         if(count == 0){
             inputLength = inputVar.length
 
-            var noStringText = {
+            let noStringText = {
                 Response: "String not found"
             };
-            res.send(noStringText)
+            res.json(noStringText)
         }
         else if(count > 0){
             Stringinput.deleteOne({string: inputVar}, function (err, doc) {
                 if (err) console.log("Error on find function")
                 console.log("Successfully deleted")  
-                var deletedResp = {
+                let deletedResp = {
                     Response: "Sucessfully deleted"
                 };
-                res.send(deletedResp)
+                res.json(deletedResp)
             });
         }
     });
